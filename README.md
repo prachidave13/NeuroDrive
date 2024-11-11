@@ -1,68 +1,47 @@
-# NeuroDrive
-# NeuroDrive: Self-Driving Car Lane Detection and Steering Control
+### Project Description: Self-Driving Vehicle: Lane Detection and Steering Angle Calculation
 
-**NeuroDrive** is an AI-powered self-driving car system that focuses on lane detection and steering angle calculation. Using computer vision and deep learning techniques, NeuroDrive identifies lanes on the road and calculates the optimal steering angle required to navigate smoothly. This repository includes code for image processing, a pre-trained model, and visualizations to guide a car along a clear path.
+**Objective:**
+My goal for this project is to develop an autonomous lane detection system for self-driving vehicles using deep learning and computer vision. The system will detect lane markings from dashboard camera images and calculate the appropriate steering angle to keep the vehicle centered within its lane.
 
-## Project Structure
+**Steps:**
 
+#### Auto-Encoder Model for Lane Detection:
 
-```plaintext
-NeuroDrive/
-├── data/
-├── main.ipynb                     # Jupyter Notebook with the code for lane detection and steering control
-├── README.md                      # Project description and usage instructions
-└── test_img.png                   # Sample image for testing lane detection and steering angle calculation
-└── autoencoder_model.h5           # Pre-trained model for image processing (e.g., denoising or feature extraction)
-```
+**Build and Train the Model:**
+I built and trained an auto-encoder neural network to identify lane markings in images. The model uses convolutional layers for feature extraction and up-sampling layers for image reconstruction, highlighting lane lines.
 
-## Features
+**Dataset:**
+I got a dataset of road images, preprocessed them, and used them to train the auto-encoder.
 
-- **Lane Detection**: Detects and highlights lane lines on road images to keep the car centered.
-- **Steering Angle Calculation**: Calculates the optimal steering angle based on detected lane positions, helping to ensure safe and accurate navigation.
-- **Model Integration**: Includes a pre-trained autoencoder model (`autoencoder_model.h5`) for tasks like feature extraction and preprocessing to improve image quality and detection accuracy.
+#### Lane Detection Using OpenCV:
 
-## Requirements
+**Preprocessing:**
+I converted images to grayscale and applied Gaussian blur to reduce noise.
 
-The project requires Python and the following libraries:
-- `numpy`
-- `opencv-python`
-- `tensorflow`
-- `matplotlib`
+**Edge Detection:**
+Using Canny edge detection, I highlighted edges in the images.
 
-You can install all required libraries with the following command:
-```bash
-pip install -r requirements.txt
-```
-Usage
-Clone the repository:
+**Region of Interest (ROI):**
+I applied a mask to focus on the relevant portion of the image where lanes are likely to appear.
 
-```bash
-git clone https://github.com/prachidave13/NeuroDrive
-```
-```bash
-cd NeuroDrive
-```
+**Hough Transform:**
+I used the Hough Transform technique to detect lines within the ROI, representing the lane markings.
 
-### Open the Notebook
+#### Steering Angle Calculation:
 
-Launch `main.ipynb` in Jupyter Notebook or any compatible IDE (e.g., Jupyter Lab, Google Colab).
+**Lane Center Calculation:**
+I used the detected lanes to determine the center of the lane.
 
-### Run the Lane Detection Pipeline
+**Angle Determination:**
+I calculated the vehicle’s deviation from the lane center and computed the corresponding steering angle to guide the vehicle back to the center.
 
-1. **Load `test_img.png`** or any road image you would like to test.
-2. Execute the cells in the notebook to process the image, detect lanes, and calculate the required steering angle.
+#### Integration and Testing:
 
-### Visualize Results
+**Pipeline Implementation:**
+I created an integrated pipeline to process images, detect lanes, and calculate the steering angle in real-time.
 
-The notebook includes visualization code to display detected lanes and the calculated steering angle directly on the road image, making it easier to interpret the system's decisions.
+**Testing:**
+I tested the pipeline on various images to ensure the system’s robustness and accuracy.
 
-### Example
-
-- **Input**: `test_img.png` - a sample road image used for testing.
-- **Output**: Visual output showing detected lanes overlaid on the road and an arrow indicating the suggested steering angle.
-
-### Future Work
-
-- **Enhanced Lane Detection**: Add functionality to handle varying lighting and weather conditions for more robust lane detection.
-- **Real-Time Controls**: Integrate with real-time control systems for potential applications in virtual simulations or physical models.
-
+**Outcome:**
+The system successfully identifies lane markings and calculates the necessary steering adjustments, demonstrating a foundational step towards fully autonomous driving capabilities. This project showcases the integration of deep learning and computer vision to solve a practical problem in autonomous vehicles, providing a stepping stone for further advancements in self-driving technology.
