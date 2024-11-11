@@ -36,7 +36,7 @@ pip install -r requirements.txt
 Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/NeuroDrive.git
+git clone https://github.com/prachidave13/NeuroDrive
 ```
 ```bash
 cd NeuroDrive
